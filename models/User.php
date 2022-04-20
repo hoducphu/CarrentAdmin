@@ -143,7 +143,6 @@ class User
     // login
     private function getUserByUserName($sql, $arr = array())
     {
-
         $user = array();
         $dbCon = new DatabaseService();
         $dbCon->connect();

@@ -196,7 +196,7 @@ class Product
         $dbCon->disconnect();
         return $row;
     }
-    // get list user
+    // get list product
     public function getAllProduct($start)
     {
         $dbCon = new DatabaseService();
