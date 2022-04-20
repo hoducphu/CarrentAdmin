@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+  }
+  
+  body {
+    height: 100vh;
+  }
+  
+.main-wrapper{
+  min-height: 100%;
+  padding-top: 60px;
+  position: relative;
+}
+
+.user-container{
+  position: relative;
+  left: 0;
+  margin-left: 264px;
+  min-height: 100% !important;
+  width: 100%;
+  padding: 40px 40px 10px 40px;
+}
+  
+.create-form {
+  height: 100%;
+}
+  
+.form-header {
+  color: #b3b9bd;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+  

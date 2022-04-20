@@ -1,0 +1,39 @@
+.body-container {
+  height: 90%;
+}
+
+.sidebar-container {
+  background-color: #fff;
+  position: fixed;
+  width: 264px;
+  height: 100%;
+  top: 86px;
+  overflow: auto;
+}
+
+.body-container .dropdown-item {
+  height: 50px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.menu {
+  height: 100%;
+  width: 100%;
+  background-color: #3b4e68;
+  overflow: hidden;
+}
+
+.menu-header {
+  font-size: 1.1rem;
+  height: 60px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.ctactive {
+  font-weight: 700 !important;
+  color: #cf2338 !important;
+  background-color: #d8d8d8;
+}
