@@ -52,6 +52,7 @@
                                 <th scope="col">Category</th>
                                 <th scope="col">State</th>
                                 <th scope="col">Created Date</th>
+                                <th scope="col mx-2">Returned</th>
                                 <th scope="col mx-2">Edit</th>
                                 <th scope="col">Delete</th>
                             </tr>
@@ -74,6 +75,12 @@
                                     echo '<td scope="row" class="text-danger" style="font-weight: 700;">Rented</td>';
                                 }
                                 echo '<td scope="row">' . date_format($dateCreated, "Y-m-d") . '</td>';
+                                if ($product['state'] === "0") {
+
+                                    echo '<td><button class="btn btn-secondary btn-sm">Returned</button></td>';
+                                } else {
+                                    echo '<td><a class="btn btn-success btn-sm" href="../controllers/ProductController.php?action=return&id=' . $product['carid'] . '">Returned</a></td>';
+                                }
                                 echo '<td><a class="btn btn-warning btn-sm" href="../controllers/ProductController.php?action=editFormShow&id=' . $product['carid'] . '">Edit</a></td>';
                                 echo '<td><a class="btn btn-danger btn-sm" href="../controllers/ProductController.php?action=delete&id=' . $product['carid'] . '">Delete</a></td>';
                                 echo '</tr>';

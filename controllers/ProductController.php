@@ -72,6 +72,13 @@ class ProductController
                 $product->editProductDetail($updateInfoDetail);
                 header("Location: ../controllers/ProductController.php?page=1");
                 break;
+            case "return":
+                $id = $_REQUEST['id'];
+
+                $product->returnProduct($id);
+                header("Location: ../controllers/ProductController.php?page=1");
+
+                break;
             case "delete":
                 $id = (int)$_GET['id'];
                 $arr = [":id" => $id];
