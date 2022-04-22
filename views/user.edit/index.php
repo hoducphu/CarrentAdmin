@@ -83,10 +83,6 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="avatar" class="form-label">Avatar</label>
-                            <input class="form-control form-control-sm" type="file" id="avatar" name="avatar" value="<?php echo $userInfo[0]['avatar']; ?>">
-                        </div>
 
                         <div class="my-3 mx-auto">
                             <button type="submit" class="btn btn-warning" name="action" value="edit">

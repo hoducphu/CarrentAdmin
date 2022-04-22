@@ -36,9 +36,15 @@
                         <div class="col-md-4 my-3">
                             <label for="cate">Category</label>
                             <select class="form-select rounded" aria-label="Category" name="cate_id" id="cate">
-                                <option selected>Category</option>
-                                <option value="1">4 seater car</option>
-                                <option value="2">7 seater car</option>
+                                <?php
+                                if ((int)$productInfo[0]['cate_id'] === 1) {
+                                    echo '<option value="1" selected>4 seater car</option>';
+                                    echo '<option value="2">7 seater car</option>';
+                                } else {
+                                    echo '<option value="1" >4 seater car</option>';
+                                    echo '<option value="2" selected>7 seater car</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="col-md-4 my-3">
@@ -88,10 +94,6 @@
                         <div class="col-md-12 form-floating">
                             <label for="description">Description</label>
                             <textarea class="form-control" placeholder="Description" id="description" style="height: 100px" name="description"></textarea>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label for="carimg" class="form-label">Car image</label>
-                            <input type="file" class="form-control form-control-sm" id="carimg" name="carimg">
                         </div>
 
                         <div class="my-3 mx-auto">

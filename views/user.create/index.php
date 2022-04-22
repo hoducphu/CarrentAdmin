@@ -27,25 +27,25 @@
                     </ol>
                 </nav>
                 <div class="create-form">
-                    <form action="../../controllers/UserController.php" method="POST" class="row g-3 border rounded" enctype="multipart/form-data">
+                    <form action="../../controllers/UserController.php" id="create_user" method="POST" class="row g-3 border rounded" enctype="multipart/form-data">
                         <div class="form-header col-md-12 mt-2">User Create Form</div>
                         <div class="col-md-6 my-3">
-                            <input type="text" class="form-control" placeholder="Username" name="username" required>
+                            <input type="text" class="form-control" placeholder="Username" name="username">
                         </div>
                         <div class="col-md-6 my-3">
-                            <input type="password" class="form-control" placeholder="Password" name="password" required>
+                            <input type="password" class="form-control" placeholder="Password" name="password">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input type="text" class="form-control" placeholder="Full Name" name="fullname" required>
+                            <input type="text" class="form-control" placeholder="Full Name" name="fullname">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input type="text" class="form-control" placeholder="Phone Number" name="phonenumber" required>
+                            <input type="text" class="form-control" placeholder="Phone Number (Ex: 0123456789)" name="phonenumber">
                         </div>
                         <div class="col-md-12 mb-3">
-                            <input type="email" class="form-control" placeholder="Example@gmail.com" name="email" required>
+                            <input type="email" class="form-control" placeholder="Example@gmail.com" name="email">
                         </div>
                         <div class="col-md-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Address" name="address" required>
+                            <input type="text" class="form-control" placeholder="Address" name="address">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="form-check">Gender</label>
@@ -101,6 +101,7 @@
             </div>
         </div>
     </div>
+    <?php include '../../libs/jsvalidate.php'; ?>
 </body>
 
 </html>

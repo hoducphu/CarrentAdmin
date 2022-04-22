@@ -53,9 +53,8 @@ class UserController
                 break;
             case "editFormShow":
                 $id = $_REQUEST['id'];
-                $arr_param = array("id" => $id);
                 $user = new User("", "", "", "", "", "", "", "", "");
-                $userInfo = $user->getUserById($arr_param);
+                $userInfo = $user->getUserById($id);
                 include '../views/user.edit/index.php';
                 break;
             case "edit":
@@ -66,10 +65,9 @@ class UserController
                 $address = $_REQUEST['address'];
                 $gender = $_REQUEST['gender'];
                 $role = $_REQUEST['role'];
-                $avatar = $_FILES['avatar'];
                 $role === "admin" ? $role_id = 1 : $role_id = 2;
 
-                $updateInfo = array("fullname" => $fullname, "phonenumber" => $phonenumber, "email" => $email, "address" => $address, "gender" => $gender,  "avatar" => $avatar, "role_id" => $role_id, ":id" => $id);
+                $updateInfo = array("fullname" => $fullname, "phonenumber" => $phonenumber, "email" => $email, "address" => $address, "gender" => $gender, "role_id" => $role_id, ":id" => $id);
                 $user->editUser($updateInfo);
                 header("Location: ../controllers/UserController.php?page=1");
                 break;
@@ -79,6 +77,16 @@ class UserController
                 $arr = [":username" => $username];
                 $user->deleteUser($arr);
                 header("Location: ../controllers/UserController.php?page=1");
+                break;
+            case "search":
+                $id = $_REQUEST['userid'];
+                $page = $_REQUEST['page'];
+                $start = ($page - 1) * 6;
+
+                $row = $user->getRowById($id);
+                $page_count = ceil($row / 6);
+                $arrUser = $user->getUserById($id);
+                include '../views/user/index.php';
                 break;
             default:
                 if (!isset($_SESSION)) {

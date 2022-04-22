@@ -115,6 +115,16 @@ class User
         $dbCon->disconnect();
         return $row;
     }
+
+    public function getRowById($id)
+    {
+        $dbCon = new DatabaseService();
+        $dbCon->connect();
+        $getRowQuery = "SELECT account.*, role.rolename FROM account, role WHERE account.role_id = role.id and account.id = " . $id;
+        $row = $dbCon->getRow($getRowQuery);
+        $dbCon->disconnect();
+        return $row;
+    }
     // get list user
     public function getAllUser($start)
     {
@@ -129,13 +139,13 @@ class User
     }
 
     // get user by id
-    public function getUserById($arr = array())
+    public function getUserById($id)
     {
-        $sql = "SELECT * FROM account where id = :id";
+        $sql = "SELECT account.*, role.rolename FROM account, role WHERE account.role_id = role.id and account.id = " . $id;
         $user = array();
         $dbCon = new DatabaseService();
         $dbCon->connect();
-        $user = $dbCon->getData($sql, $arr);
+        $user = $dbCon->getData($sql);
         $dbCon->disconnect();
         return $user;
     }
@@ -199,7 +209,7 @@ class User
     // update user
     public function editUser($arr_param)
     {
-        $sql = "UPDATE account SET fullname = :fullname,  phonenumber = :phonenumber, email = :email, address = :address, gender = :gender,  avatar = :avatar, role_id = :role_id where id = :id";
+        $sql = "UPDATE account SET fullname = :fullname,  phonenumber = :phonenumber, email = :email, address = :address, gender = :gender, role_id = :role_id where id = :id";
         $dbCon = new DatabaseService();
         $dbCon->connect();
         $dbCon->editData($sql, $arr_param);

@@ -45,8 +45,7 @@ class ProductController
                 break;
             case "editFormShow":
                 $id = $_REQUEST['id'];
-                $arr_param = array("carid" => $id);
-                $productInfo = $product->getProductById($arr_param);
+                $productInfo = $product->getProductById($id);
                 include '../views/product.edit/index.php';
                 break;
             case "edit":
@@ -64,15 +63,13 @@ class ProductController
                 $undercarriage = $_POST['undercarriage'];
                 $gearbox = $_POST['gearbox'];
                 $description = $_POST['description'];
-                $carimg = $_FILES['carimg']['name'];
 
                 $cate_id === 1 ? $seat = 4 : $seat = 7;
 
-                $updateInfo = array("cate_id" => $cate_id, "description" => $description, "car_img" => $carimg, "car_name" => $carname, "id" => (int)$carid);
+                $updateInfo = array("cate_id" => $cate_id, "description" => $description,  "car_name" => $carname, "id" => (int)$carid);
                 $product->editProduct($updateInfo);
                 $updateInfoDetail = array("brand" => $brand, "engine" => $engine, "wattage" => $wattage, "capacity" => $capacity, "vehical_size" => $vehicalsize, "licence_plates" => $licenceplates, "color" => $color, "price" => $price, "seat" => $seat, "undercarriage" => $undercarriage, "gearbox" => $gearbox, "id" => (int)$carid);
                 $product->editProductDetail($updateInfoDetail);
-                $uploadFile->uploadFile('carimg');
                 header("Location: ../controllers/ProductController.php?page=1");
                 break;
             case "delete":
@@ -81,6 +78,16 @@ class ProductController
                 $product->deleteProductDetail($arr);
                 $product->deleteProduct($arr);
                 header("Location: ../controllers/ProductController.php?page=1");
+                break;
+            case "search":
+                $id = $_REQUEST['carid'];
+                $page = $_REQUEST['page'];
+                $start = ($page - 1) * 6;
+
+                $row = $product->getRowById($id);
+                $page_count = ceil($row / 6);
+                $arrProduct = $product->getProductById($id);
+                include '../views/product/index.php';
                 break;
             default:
                 if (!isset($_SESSION)) {

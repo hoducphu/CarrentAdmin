@@ -196,29 +196,39 @@ class Product
         $dbCon->disconnect();
         return $row;
     }
+
+    public function getRowById($id)
+    {
+        $dbCon = new DatabaseService();
+        $dbCon->connect();
+        $getRowQuery = "SELECT * FROM car, car_detail WHERE car.id = car_detail.car_id and car.id = " . $id;
+        $row = $dbCon->getRow($getRowQuery);
+        $dbCon->disconnect();
+        return $row;
+    }
     // get list product
     public function getAllProduct($start)
     {
         $dbCon = new DatabaseService();
         $dbCon->connect();
         $limit = "limit " . $start . ", 6";
-        $sql = "SELECT car.id AS carid, car.state, car.description, car.car_img, car.car_name, car_detail.*, category.* FROM car, car_detail, category WHERE car.id = car_detail.car_id AND car.cate_id = category.id " . $limit;
-        $arrUser = array();
-        $arrUser = $dbCon->getAllData($sql);
+        $sql = "SELECT car.id AS carid, car.state, car.description, car.car_img, car.car_name, car_detail.*, category.* FROM car, car_detail, category WHERE car.id = car_detail.car_id AND car.cate_id = category.id ORDER BY car.state DESC " . $limit;
+        $arrProduct = array();
+        $arrProduct = $dbCon->getAllData($sql);
         $dbCon->disconnect();
-        return $arrUser;
+        return $arrProduct;
     }
 
     // get product by id
-    public function getProductById($arr = array())
+    public function getProductById($id)
     {
-        $sql = "SELECT car.id AS carid, car.state, car.description, car.car_img, car.car_name, car_detail.*, category.* FROM car, car_detail, category WHERE car.id = :carid AND car.id = car_detail.car_id AND car.cate_id = category.id";
-        $user = array();
+        $sql = "SELECT car.id AS carid, car.state, car.description, car.car_img, car.car_name, car.cate_id, car_detail.*, category.* FROM car, car_detail, category WHERE car.id = car_detail.car_id AND car.cate_id = category.id AND car.id = " . $id;
+        $product = array();
         $dbCon = new DatabaseService();
         $dbCon->connect();
-        $user = $dbCon->getData($sql, $arr);
+        $product = $dbCon->getData($sql);
         $dbCon->disconnect();
-        return $user;
+        return $product;
     }
 
     // create product
@@ -253,7 +263,7 @@ class Product
     // update product
     public function editProduct($arr_param)
     {
-        $sql = "UPDATE car SET cate_id = :cate_id,  description = :description, car_img = :car_img, car_name = :car_name where id = :id";
+        $sql = "UPDATE car SET cate_id = :cate_id,  description = :description, car_name = :car_name where id = :id";
         $dbCon = new DatabaseService();
         $dbCon->connect();
         $dbCon->editData($sql, $arr_param);

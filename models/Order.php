@@ -67,6 +67,18 @@ class Order
         return $user;
     }
 
+    public function getOrderPendingById($id)
+    {
+        $sql = "SELECT customer.fullname as customer, car.id as carid, order.id as orderid, order_detail.total_price, order.order_date, car.car_name, order.state 
+        FROM dack_carrent.car, dack_carrent.order_detail, dack_carrent.order, dack_carrent.customer
+        WHERE car.id = order_detail.car_id and order.id = order_detail.order_id  and order.customer_id = customer.id and  order.id = " . $id;
+        $dbCon = new DatabaseService();
+        $dbCon->connect();
+        $user = $dbCon->getAllData($sql);
+        $dbCon->disconnect();
+        return $user;
+    }
+
     // reject order
     public function rejectOrder($arr_param)
     {

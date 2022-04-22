@@ -25,10 +25,18 @@
                         <li class="breadcrumb-item active" aria-current="page">Product</li>
                     </ol>
                 </nav>
-                <div class="d-flex flex-row">
+                <div class="d-flex flex-row justify-content-between" style="width: 100%;">
                     <a class="btn btn-danger mb-3 " href="../views/product.create/">
                         Add New Product
                     </a>
+                    <form action="../controllers/ProductController.php?page=1" method="POST">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="ID" name="carid" required>
+                            <button type="submit" class="btn btn-secondary" id="basic-addon2" name="action" value="search">
+                                Search
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="view-table">

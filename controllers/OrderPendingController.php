@@ -39,7 +39,7 @@ class UserController
 
                 $row = $order->getRow();
                 $page_count = ceil($row / 6);
-                $arrOrder = $order->getOrderById($id);
+                $arrOrder = $order->getOrderPendingById($id);
                 include '../views/orderpending/index.php';
                 break;
             default:

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-light ">
-    <a class="navbar-brand d-flex justify-content-center align-items-center" href="../user">
+    <a class="navbar-brand d-flex justify-content-center align-items-center" href="../controllers/OrderPendingController.php?page=1">
         <div class="logo">Admin</div>
     </a>
     <form action="../controllers/UserController.php" method="POST">

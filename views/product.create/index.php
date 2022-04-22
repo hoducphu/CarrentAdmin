@@ -61,7 +61,7 @@
                             <input type="text" class="form-control" placeholder="Color" name="color" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <input type="text" class="form-control" placeholder="Price" name="price" required>
+                            <input type="text" class="form-control" placeholder="Price (Ex: 200.000)" name="price" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <input type="text" class="form-control" placeholder="Under Carriage" name="undercarriage" required>
