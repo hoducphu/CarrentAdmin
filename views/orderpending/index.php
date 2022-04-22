@@ -63,7 +63,7 @@
                                     echo '<td scope="row" class="text-success" style="font-weight: 700;">Resolved</td>';
                                 }
                                 echo '<td scope="row">' . $order['order_date'] . '</td>';
-                                echo '<td><a class="btn btn-success btn-sm" href="../controllers/OrderPendingController.php?action=conform&id= ' . $order['orderid'] . '">Conform</a></td>';
+                                echo '<td><a class="btn btn-success btn-sm" href="../controllers/OrderPendingController.php?action=conform&id= ' . $order['orderid'] . '&carid=' . $order['carid'] . '">Conform</a></td>';
                                 echo '<td><a class="btn btn-danger btn-sm" href="../controllers/OrderPendingController.php?action=reject&id= ' . $order['orderid'] . '">Reject</a></td>';
                                 echo '</tr>';
                             }

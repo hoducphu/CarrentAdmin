@@ -269,6 +269,15 @@ class Product
         $dbCon->disconnect();
     }
 
+    public function updateProductState($arr_param)
+    {
+        $sql = "UPDATE car SET state = '1' where id = :id";
+        $dbCon = new DatabaseService();
+        $dbCon->connect();
+        $dbCon->editData($sql, $arr_param);
+        $dbCon->disconnect();
+    }
+
     //delete product
     public function deleteProduct($arr_param)
     {

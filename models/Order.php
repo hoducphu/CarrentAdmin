@@ -1,19 +1,24 @@
 <?php
 class Order
 {
-    private $id;
-    public function __construct($id)
+    // get row
+    public function getPendingRow()
     {
-        $this->id = $id;
+        $dbCon = new DatabaseService();
+        $dbCon->connect();
+        $getRowQuery = "SELECT * FROM dack_carrent.order, dack_carrent.order_detail 
+                        WHERE order.id = order_detail.order_id and order.state = '0'";
+        $row = $dbCon->getRow($getRowQuery);
+        $dbCon->disconnect();
+        return $row;
     }
 
-    // get row
     public function getRow()
     {
         $dbCon = new DatabaseService();
         $dbCon->connect();
         $getRowQuery = "SELECT * FROM dack_carrent.order, dack_carrent.order_detail 
-                        WHERE order.id = order_detail.order_id";
+                        WHERE order.id = order_detail.order_id and order.state != '0'";
         $row = $dbCon->getRow($getRowQuery);
         $dbCon->disconnect();
         return $row;
@@ -27,7 +32,7 @@ class Order
         $limit = "limit " . $start . ", 6";
         $sql = "SELECT customer.fullname as customer, account.fullname as staff, car.id as carid, order.id as orderid, order_detail.total_price, order.order_date, order.conform_order_date, role.rolename, car.car_name, order.state 
                 FROM dack_carrent.car, dack_carrent.order_detail, dack_carrent.order, dack_carrent.customer, dack_carrent.account, dack_carrent.role 
-                WHERE car.id = order_detail.car_id and order.id = order_detail.order_id and order.staff_id = account.id and order.customer_id = customer.id  and account.role_id = role.id  
+                WHERE car.id = order_detail.car_id and order.id = order_detail.order_id and order.staff_id = account.id and order.customer_id = customer.id  and account.role_id = role.id and order.state != '0'
                 ORDER BY order.state DESC " . $limit;
         $arrUser = array();
         $arrUser = $dbCon->getAllData($sql);
